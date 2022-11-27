@@ -103,3 +103,10 @@ WHERE cd.continent IS NOT NULL
 
 SELECT *, (people_vaccinated/population)*100 as perc_vacc
 FROM popvsvacc;
+
+CREATE VIEW highest_death_count AS
+SELECT continent, SUM(new_deaths) as highest_death_count
+FROM covid_deaths
+WHERE continent IS NOT NULL 
+GROUP BY continent
+ORDER BY highest_death_count DESC;
